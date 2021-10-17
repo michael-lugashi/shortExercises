@@ -10,13 +10,33 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./app/helpers/events.js":
+/*!*******************************!*\
+  !*** ./app/helpers/events.js ***!
+  \*******************************/
+/***/ (() => {
+
+eval("\r\nlet done = document.querySelector(`[name=\"1\"]`);\r\ndone.addEventListener('click', done)\r\n\n\n//# sourceURL=webpack://calc/./app/helpers/events.js?");
+
+/***/ }),
+
+/***/ "./app/helpers/math.js":
+/*!*****************************!*\
+  !*** ./app/helpers/math.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"add\": () => (/* binding */ add),\n/* harmony export */   \"sub\": () => (/* binding */ sub),\n/* harmony export */   \"multiply\": () => (/* binding */ multiply),\n/* harmony export */   \"divide\": () => (/* binding */ divide),\n/* harmony export */   \"equals\": () => (/* binding */ equals)\n/* harmony export */ });\n\r\nfunction add(n1, n2) {\r\n    return n1 + n2\r\n}\r\nfunction sub(n1, n2) {\r\n    return n1 - n2\r\n}\r\n\r\nfunction multiply(n1, n2) {\r\n    return n1 * n2\r\n}\r\n\r\nfunction divide(n1, n2) {\r\n    return n1 / n2\r\n}\r\n\r\nfunction equals(n1, n2, callback) {\r\n    return callback(n1, n2)\r\n}\n\n//# sourceURL=webpack://calc/./app/helpers/math.js?");
+
+/***/ }),
+
 /***/ "./app/main.js":
 /*!*********************!*\
   !*** ./app/main.js ***!
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./app/styles.css\");\n\r\n;\n\n//# sourceURL=webpack://calc/./app/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./app/styles.css\");\n/* harmony import */ var _helpers_math_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/math.js */ \"./app/helpers/math.js\");\n/* harmony import */ var _helpers_events_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/events.js */ \"./app/helpers/events.js\");\n/* harmony import */ var _helpers_events_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_helpers_events_js__WEBPACK_IMPORTED_MODULE_2__);\n\r\n;\r\n\r\n\r\nfunction done(){\r\n    console.log(1)\r\n}\n\n//# sourceURL=webpack://calc/./app/main.js?");
 
 /***/ }),
 
