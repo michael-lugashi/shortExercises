@@ -1,2 +1,5 @@
 'use strict'
-export function
+const result = document.querySelector('.result')
+export function updateDisplay(num){
+    result.value = num
+}

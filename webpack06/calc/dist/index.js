@@ -16,7 +16,7 @@
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"updateNum1\": () => (/* binding */ updateNum1)\n/* harmony export */ });\n\r\nconst calcInfo = {\r\n    num1: '',\r\n    num2: '',\r\n    operator: null,\r\n}\r\nfunction updateNum1(n1, info = calcInfo){\r\n    info.num1 += n1\r\n    console.log(info.num1)\r\n    return info.num1\r\n}\r\n\r\nfunction getnum1(n1 = num1) {\r\n    console.log(n1)\r\n    return Number(n1)\r\n}\r\nfunction getnum2(n2 = num2) {\r\n    return Number(n2)\r\n}\r\nfunction setOperator(e){\r\n    calcInfo.operator = e\r\n}\r\nfunction getOperator(){\r\n    return calcInfo.operator\r\n}\n\n//# sourceURL=webpack://calc/./app/helpers/calcStorage.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"updateNum1\": () => (/* binding */ updateNum1),\n/* harmony export */   \"updateNum2\": () => (/* binding */ updateNum2),\n/* harmony export */   \"setNum1\": () => (/* binding */ setNum1),\n/* harmony export */   \"clearNum2\": () => (/* binding */ clearNum2),\n/* harmony export */   \"getNum1\": () => (/* binding */ getNum1),\n/* harmony export */   \"getNum2\": () => (/* binding */ getNum2),\n/* harmony export */   \"setOperator\": () => (/* binding */ setOperator),\n/* harmony export */   \"getOperator\": () => (/* binding */ getOperator)\n/* harmony export */ });\n/* harmony import */ var _updateDom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./updateDom */ \"./app/helpers/updateDom.js\");\n\r\n;\r\nconst calcInfo = {\r\n    num1: '',\r\n    num2: '',\r\n    operator: null,\r\n}\r\nfunction updateNum1(n1, info = calcInfo){\r\n    info.num1 += n1\r\n    ;(0,_updateDom__WEBPACK_IMPORTED_MODULE_0__.updateDisplay)(info.num1)\r\n    return info.num1\r\n}\r\n\r\nfunction updateNum2(n2, info = calcInfo){\r\n    info.num2 += n2\r\n    ;(0,_updateDom__WEBPACK_IMPORTED_MODULE_0__.updateDisplay)(info.num2)\r\n    return info.num2\r\n}\r\nfunction setNum1(n1) {\r\n    calcInfo.num1 = String(n1)\r\n}\r\n\r\nfunction clearNum2() {\r\n    calcInfo.num2 = ''\r\n}\r\n\r\nfunction getNum1() {\r\n    return calcInfo.num1\r\n}\r\nfunction getNum2() {\r\n    return calcInfo.num2\r\n}\r\nfunction setOperator(e){\r\n    calcInfo.operator = e\r\n}\r\nfunction getOperator(){\r\n    return calcInfo.operator\r\n}\n\n//# sourceURL=webpack://calc/./app/helpers/calcStorage.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _calcStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calcStorage */ \"./app/helpers/calcStorage.js\");\n\r\n;\r\nlet calculater = document.querySelector(`.container`);\r\ncalculater.addEventListener('click', splitEvents)\r\n\r\nfunction splitEvents(event) {\r\n    const value = event.target.value\r\n    // console.log((Number(value)))\r\n    if (!isNaN(value) || value === '.') {\r\n        // console.log(value)\r\n        (0,_calcStorage__WEBPACK_IMPORTED_MODULE_0__.updateNum1)(value)\r\n        \r\n    }\r\n}\r\n\n\n//# sourceURL=webpack://calc/./app/helpers/events.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _calcStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calcStorage */ \"./app/helpers/calcStorage.js\");\n/* harmony import */ var _solve__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./solve */ \"./app/helpers/solve.js\");\n/* harmony import */ var _updateDom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./updateDom */ \"./app/helpers/updateDom.js\");\n\r\n;\r\n\r\n\r\nlet calculater = document.querySelector(`.container`);\r\ncalculater.addEventListener('click', splitEvents)\r\n\r\nfunction splitEvents(event) {\r\n    const value = event.target.value\r\n    const btnType = event.target.name\r\n    console.log(btnType)\r\n\r\n    if (btnType === 'int' && !(0,_calcStorage__WEBPACK_IMPORTED_MODULE_0__.getOperator)()) {\r\n        return (0,_calcStorage__WEBPACK_IMPORTED_MODULE_0__.updateNum1)(value)\r\n    }\r\n    if (btnType === 'int' && (0,_calcStorage__WEBPACK_IMPORTED_MODULE_0__.getOperator)()) {\r\n        return (0,_calcStorage__WEBPACK_IMPORTED_MODULE_0__.updateNum2)(value)\r\n    }\r\n    // this makes it so you can do calculations contiuesly without pressing enter\r\n    if (btnType === 'operator' && (0,_calcStorage__WEBPACK_IMPORTED_MODULE_0__.getOperator)()) {\r\n        (0,_solve__WEBPACK_IMPORTED_MODULE_1__.solve)()\r\n        ;(0,_calcStorage__WEBPACK_IMPORTED_MODULE_0__.setOperator)(value)\r\n    } else if(btnType === 'operator') {\r\n        (0,_calcStorage__WEBPACK_IMPORTED_MODULE_0__.setOperator)(value)\r\n        ;(0,_updateDom__WEBPACK_IMPORTED_MODULE_2__.updateDisplay)('')\r\n    }\r\n    if (btnType === 'equal') {\r\n        (0,_solve__WEBPACK_IMPORTED_MODULE_1__.solve)()\r\n    }\r\n\r\n}\r\n\n\n//# sourceURL=webpack://calc/./app/helpers/events.js?");
 
 /***/ }),
 
@@ -40,13 +40,33 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./app/helpers/solve.js":
+/*!******************************!*\
+  !*** ./app/helpers/solve.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"solve\": () => (/* binding */ solve)\n/* harmony export */ });\n/* harmony import */ var _calcStorage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calcStorage.js */ \"./app/helpers/calcStorage.js\");\n/* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./math.js */ \"./app/helpers/math.js\");\n/* harmony import */ var _updateDom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./updateDom */ \"./app/helpers/updateDom.js\");\n\r\n;\r\n\r\n\r\n\r\nfunction solve(){\r\n    const num1 = Number((0,_calcStorage_js__WEBPACK_IMPORTED_MODULE_0__.getNum1)())\r\n    const num2 = Number((0,_calcStorage_js__WEBPACK_IMPORTED_MODULE_0__.getNum2)())\r\n    const operator = determineOperator((0,_calcStorage_js__WEBPACK_IMPORTED_MODULE_0__.getOperator)())\r\n    \r\n    if (!num1 || !num2 || !operator ) {\r\n        return\r\n    }\r\n\r\n    calcSetUp((0,_math_js__WEBPACK_IMPORTED_MODULE_1__.equals)(num1, num2, operator))\r\n}\r\n\r\nfunction calcSetUp(ans) {\r\n    (0,_updateDom__WEBPACK_IMPORTED_MODULE_2__.updateDisplay)(ans)\r\n    ;(0,_calcStorage_js__WEBPACK_IMPORTED_MODULE_0__.setOperator)(null)\r\n    ;(0,_calcStorage_js__WEBPACK_IMPORTED_MODULE_0__.setNum1)(ans)\r\n    ;(0,_calcStorage_js__WEBPACK_IMPORTED_MODULE_0__.clearNum2)()\r\n}\r\n\r\nfunction determineOperator(op) {\r\n    return op === '+' ? _math_js__WEBPACK_IMPORTED_MODULE_1__.add: op === '-' ? _math_js__WEBPACK_IMPORTED_MODULE_1__.sub: op === 'X' ? _math_js__WEBPACK_IMPORTED_MODULE_1__.multiply: op === '/' ? _math_js__WEBPACK_IMPORTED_MODULE_1__.divide: null\r\n}\n\n//# sourceURL=webpack://calc/./app/helpers/solve.js?");
+
+/***/ }),
+
+/***/ "./app/helpers/updateDom.js":
+/*!**********************************!*\
+  !*** ./app/helpers/updateDom.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"updateDisplay\": () => (/* binding */ updateDisplay)\n/* harmony export */ });\n\r\nconst result = document.querySelector('.result')\r\nfunction updateDisplay(num){\r\n    result.value = num\r\n}\n\n//# sourceURL=webpack://calc/./app/helpers/updateDom.js?");
+
+/***/ }),
+
 /***/ "./app/main.js":
 /*!*********************!*\
   !*** ./app/main.js ***!
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./app/styles.css\");\n/* harmony import */ var _helpers_math_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/math.js */ \"./app/helpers/math.js\");\n/* harmony import */ var _helpers_events_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/events.js */ \"./app/helpers/events.js\");\n\r\n;\r\n\r\n\r\n\r\nconst calcInfo = {\r\n    num1: '',\r\n    num2: '',\r\n    equation: ''\r\n}\r\n\n\n//# sourceURL=webpack://calc/./app/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./app/styles.css\");\n/* harmony import */ var _helpers_events_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/events.js */ \"./app/helpers/events.js\");\n\r\n;\r\n\r\n\r\n\n\n//# sourceURL=webpack://calc/./app/main.js?");
 
 /***/ }),
 

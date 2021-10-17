@@ -1,4 +1,5 @@
 'use strict'
+import { updateDisplay } from "./updateDom"
 const calcInfo = {
     num1: '',
     num2: '',
@@ -6,20 +7,32 @@ const calcInfo = {
 }
 export function updateNum1(n1, info = calcInfo){
     info.num1 += n1
-    console.log(info.num1)
+    updateDisplay(info.num1)
     return info.num1
 }
 
-function getnum1(n1 = num1) {
-    console.log(n1)
-    return Number(n1)
+export function updateNum2(n2, info = calcInfo){
+    info.num2 += n2
+    updateDisplay(info.num2)
+    return info.num2
 }
-function getnum2(n2 = num2) {
-    return Number(n2)
+export function setNum1(n1) {
+    calcInfo.num1 = String(n1)
 }
-function setOperator(e){
+
+export function clearNum2() {
+    calcInfo.num2 = ''
+}
+
+export function getNum1() {
+    return calcInfo.num1
+}
+export function getNum2() {
+    return calcInfo.num2
+}
+export function setOperator(e){
     calcInfo.operator = e
 }
-function getOperator(){
+export function getOperator(){
     return calcInfo.operator
 }
