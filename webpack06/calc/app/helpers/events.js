@@ -1,5 +1,5 @@
 'use strict'
-import {updateNum1, setOperator, getOperator, updateNum2} from './calcStorage'
+import {updateNum1, setOperator, getOperator, updateNum2, setNum1, clearNum2} from './calcStorage'
 import { solve } from './solve';
 import { updateDisplay } from './updateDom';
 let calculater = document.querySelector(`.container`);
@@ -28,4 +28,10 @@ function splitEvents(event) {
         solve()
     }
 
+    if (btnType === 'del') {
+        updateDisplay('')
+        setOperator(null)
+        clearNum2()
+        setNum1('')
+    }
 }
