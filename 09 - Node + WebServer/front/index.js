@@ -11,11 +11,10 @@ async function submitted(event) {
     .post('http://localhost:8080/', JSON.stringify(applicantInfo))
     .then((res) => {
       console.log(res);
-      if (!res.data){
-          alert('You were rejected')
-      }
       if (res.data) {
-          alert('Congrats youve been accepted')
+        alert("Congrats you've been accepted");
+      } else {
+        alert('You were rejected');
       }
     })
     .catch((err) => {

@@ -15,23 +15,26 @@ const server = http.createServer((req, res) => {
         'Content-Type': 'text/html',
         'Access-Control-Allow-Origin': '*',
       });
-      let validated = true;
-      const info = JSON.parse(body);
-      const { name, age, abilityApp } = info;
-      const { nameNotEqual, minAge, maxAge, ability } = data.validStudent;
-      if (nameNotEqual.includes(name)) {
-        validated = false;
-      }
-      if (age < minAge || age > maxAge) {
-        validated = false;
-      }
-      if (!ability.includes(abilityApp)) {
-        validated = false;
-      }
-      res.end(String(validated));
+      res.end(checkValidation(JSON.parse(body)));
     });
   }
 });
 server.listen(8080, () => {
   console.log('listening to 8080');
 });
+
+function checkValidation(info) {
+  let validated = true;
+  const { name, age, abilityApp } = info;
+  const { nameNotEqual, minAge, maxAge, ability } = data.validStudent;
+  if (nameNotEqual.includes(name)) {
+    validated = false;
+  }
+  if (age < minAge || age > maxAge) {
+    validated = false;
+  }
+  if (!ability.includes(abilityApp)) {
+    validated = false;
+  }
+  return String(validated);
+}
