@@ -2,11 +2,6 @@
 form.addEventListener('submit', submitted);
 async function submitted(event) {
   event.preventDefault();
-  //     console.log(nameApp.value)
-  //   console.log(event);
-  //   axios.get('http://localhost:8080/').then(res=>{
-  //       console.log(res)
-  //   })
   let applicantInfo = {
     name: nameApp.value,
     age: age.value,
@@ -26,10 +21,4 @@ async function submitted(event) {
     .catch((err) => {
       console.log(err);
     });
-  // try {
-  //     const data = await axios.get("http://localhost:8080/");
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
 }
