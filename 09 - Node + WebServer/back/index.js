@@ -4,6 +4,11 @@ const data = require('./db');
 
 const server = http.createServer((req, res) => {
   let body = '';
+  if (req.method === 'GET') {
+      console.log('recieved')
+      res.write('got')
+      res.end()
+  }
   if (req.method === 'POST') {
     req.on('data', (data) => {
       body += data;
