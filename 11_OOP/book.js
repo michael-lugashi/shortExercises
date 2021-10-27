@@ -8,7 +8,7 @@ class BookList {
     this.numRead = allBooks.filter((book) => book.read).length;
     this.numNotRead =  allBooks.filter((book) => !book.read).length
   }
-  add = function(book) {
+  add(book) {
       this.allBooks.push(book)
       if (book.read) {
           this.numRead += 1
